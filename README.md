@@ -2,11 +2,8 @@
 | Сервис               | Основная роль                                                                 |
 |:---------------------|:------------------------------------------------------------------------------|
 | VideoUploadService   | UI/API для загрузки видео. Принимает параметры: язык, публичность, тег и т.д. |
-| TranscriptionService | Расшифровка видео через AI-движок. Хранит TranscriptionJob.                  |
-| SubtitleService      | Конвертирует TranscriptResult в .srt (или .vtt)                              |
+| TranscriptionService | Расшифровка видео через AI-движок. Хранит TranscriptionJob. Конвертирует TranscriptResult в .srt (или .vtt)                  |
 | PublishingService    | Публикует видео, субтитры, описание в PeerTube через REST API                |
-
-
 
 # 📦 1. Video (в VideoUploadService.Domain.Entities)
 ```
@@ -30,7 +27,7 @@ public class TranscriptionJob
     public Long Id { get; set; }
     public Long VideoId { get; set; }
     public string AudioPath { get; set; }
-    public string TranscriptPath { get; set; }
+    public string SubtitlePath { get; set; } // путь к .srt файлу
     public string TranscriptText { get; set; }
     public DateTime StartedAt { get; set; }
     public DateTime? CompletedAt { get; set; }
@@ -38,18 +35,7 @@ public class TranscriptionJob
 }
 ```
 
-# 📝 3. Subtitle (в SubtitleService.Domain.Entities)
-```
-public class Subtitle
-{
-    public Long Id { get; set; }
-    public Long VideoId { get; set; }
-    public string SubtitlePath { get; set; } // путь к .srt файлу
-    public DateTime CreatedAt { get; set; }
-}
-```
-
-# 🚀 4. PublishRequest (в PublishingService.Domain.Entities)
+# 🚀 3. PublishRequest (в PublishingService.Domain.Entities)
 ```
 hpublic class PublishRequesta
 {
@@ -74,7 +60,6 @@ hpublic class PublishRequesta
 -	получает видео, извлекает аудио
 -   расшифровывает через Vosk
 -	отдает текст и временные метки
-##	Субтитры (SubtitleService)
 -	получает текст + тайминги
 -	формирует .srt
 ##	Публикация (PublishingService)
