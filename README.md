@@ -12,7 +12,7 @@
 ```
 public class Video
 {
-    public Guid Id { get; set; }
+    public Long Id { get; set; }
     public string FilePath { get; set; }
     public string Title { get; set; }
     public string Description { get; set; }
@@ -27,8 +27,8 @@ public class Video
 ```
 public class TranscriptionJob
 {
-    public Guid Id { get; set; }
-    public Guid VideoId { get; set; }
+    public Long Id { get; set; }
+    public Long VideoId { get; set; }
     public string AudioPath { get; set; }
     public string TranscriptPath { get; set; }
     public string TranscriptText { get; set; }
@@ -42,8 +42,8 @@ public class TranscriptionJob
 ```
 public class Subtitle
 {
-    public Guid Id { get; set; }
-    public Guid VideoId { get; set; }
+    public Long Id { get; set; }
+    public Long VideoId { get; set; }
     public string SubtitlePath { get; set; } // путь к .srt файлу
     public DateTime CreatedAt { get; set; }
 }
@@ -53,8 +53,8 @@ public class Subtitle
 ```
 hpublic class PublishRequesta
 {
-    public Guid Id { get; set; }
-    public Guid VideoId { get; set; }
+    public Long Id { get; set; }
+    public Long VideoId { get; set; }
     public string VideoPath { get; set; }
     public string SubtitlePath { get; set; }
     public string Title { get; set; }
